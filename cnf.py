@@ -11,7 +11,8 @@ if __name__ == '__main__':
 
     def var(d, h, i, j):
         assert(0<= i and i <= N and 0<= j and j <=N)
-        return d*(N**3)+h*(N**2)+(i*N)+j+1
+        value = f"{d}00{h}00{i}00{j}"
+        return int(value)
 
     clauses = []
     
