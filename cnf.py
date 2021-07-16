@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     temp = []
 
-    # Los participantes deben jugar dos veces con cada uno de los otros participantes
+    # Los participantes deben jugar al menos una vez con cada uno de los otros participantes
     for i in range(0, N): #Participante que juega como local
         for j in range(0, N): #Participante que juega como visitante
             if i != j:
@@ -35,6 +35,17 @@ if __name__ == '__main__':
 
                 clauses.append(temp)
                 temp = []
+
+    # Los participantes máximo deben jugar una vez como local y una como visitante con otro participante
+    for d in range(0, dur_date):
+    for i in range(0, N):
+        for j in range(0,N):
+            if i != j:
+                for h in range(0, dur_hour):
+                    for w in range(0, dur_date):
+                        for k in range(0, dur_hour):
+                            if w != d or k != h:
+                                clauses.append([-var(d,h,i,j), -var(w,k,i,j)])
 
     # Un participante puede jugar a lo sumo una vez por dia
     for d in range(0, dur_date):
@@ -57,5 +68,16 @@ if __name__ == '__main__':
                             for k in range(0, N):
                                 if (w != i or k != j) and w != k:
                                     clauses.append([-var(d,h,i,j), -var(d,h,w,k)])
+
+    # Un jugador no puede jugar ni de local ni de visitante dos dias consecutivos
+    for d in range(0, dur_date - 1):
+        for i in range(0, N):
+            for j in range(0,N):
+                if i != j:
+                    for h in range(0, dur_hour):
+                        for w in range(0, N):
+                            if w != i and w != j:
+                                for k in range(0, dur_hour):
+                                    clauses.append([-var(d,h,i,j), -var(d+1,k,i,w)])
 
 
