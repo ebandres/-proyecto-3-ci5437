@@ -1,9 +1,9 @@
 {
   "tournament_name": "String. Nombre del torneo",
   "start_date": "2021-04-12",
-  "end_date": "2021-04-16",
+  "end_date": "2021-05-08",
   "start_time": "06:00:00",
-  "end_time": "08:00:00",
-  "participants": ["Maria", "Jose", "Josephine", "Kyndra"]
+  "end_time": "18:00:00",
+  "participants": ["Maria", "Jose", "Josephine", "Sandra", "John", "Mike", "Lucy", "Andy", "Isabela"]
 }
  
