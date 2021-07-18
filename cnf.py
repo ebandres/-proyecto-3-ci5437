@@ -1,39 +1,33 @@
-import sys, json, datetime
-import pickle
+import json, datetime
+import saveload
 
 # Global variables to store all values for later retrieval during decoding
 value_dict = {}
 last_value = 1
-        
-def save_obj(obj, name):
-    with open(name + '.pkl', 'wb') as f:
-        pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
 
-def load_obj(name):
-    with open('obj/' + name + '.pkl', 'rb') as f:
-        return pickle.load(f)
+def var(d, h, i, j):
+    assert(0<= i and i <= N and 0<= j and j <=N)
+    #value = f"{d}00{h}00{i}00{j}"
+    #return value
+    global last_value
+    k = f"{d} {h} {i} {j}"
 
-if __name__ == '__main__':
+    if k not in value_dict:
+        value_dict[k] = last_value
+        last_value += 1
+        return last_value - 1
 
-    file_name = sys.argv[1]
+    return value_dict[k]
+
+def convert(filename):
+    global N
+
+    file_name = filename
 
     f = open(file_name, 'r')
     data = json.loads(f.read())
 
     N = len(data["participants"])
-
-    def var(d, h, i, j):
-        assert(0<= i and i <= N and 0<= j and j <=N)
-        #value = f"{d}00{h}00{i}00{j}"
-        #return value
-        global last_value
-
-        if f"{d}{h}{i}{j}" not in value_dict:
-            value_dict[f"{d}{h}{i}{j}"] = last_value
-            last_value += 1
-            return last_value - 1
-
-        return value_dict[f"{d}{h}{i}{j}"]
 
     clauses = []
     
@@ -48,6 +42,8 @@ if __name__ == '__main__':
 
     temp = []
     count = 0
+
+    print("Calculating clauses...")
 
     # Número total de variables
     for i in range(1, N + 1):
@@ -113,8 +109,8 @@ if __name__ == '__main__':
                                     clauses.append([f"{-var(d,h,i,j)}", f"{-var(d+1,k,w,j)}"])
 
 
-    print("Saving value dictionary in obj/keys.pkl")
-    save_obj(value_dict, "keys")
+    print("Saving value dictionary in keys.pkl")
+    saveload.save_obj(value_dict, "keys")
 
     print("Writing cnf.txt ...")
     cnf = open("cnf.txt", "w")
