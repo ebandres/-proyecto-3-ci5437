@@ -54,7 +54,7 @@ if __name__ == '__main__':
         for j in range(1, N + 1):
             if i != j:
                 for d in range(1, dur_date + 1):
-                    for h in range(1, dur_hour + 1):
+                    for h in range(1, (dur_hour // 2) + 1):
                         count += 1
     
     # Los participantes deben jugar al menos una vez con cada uno de los otros participantes
@@ -62,7 +62,7 @@ if __name__ == '__main__':
         for j in range(1, N + 1): #Participante que juega como visitante
             if i != j:
                 for d in range(1, dur_date + 1):
-                    temp += [f"{var(d,h,i,j)}" for h in range(1, dur_hour + 1)]
+                    temp += [f"{var(d,h,i,j)}" for h in range(1, (dur_hour // 2) + 1)]
 
                 clauses.append(temp)
                 temp = []
@@ -72,9 +72,9 @@ if __name__ == '__main__':
         for i in range(1, N + 1):
             for j in range(1, N + 1):
                 if i != j:
-                    for h in range(1, dur_hour + 1):
+                    for h in range(1, (dur_hour // 2) + 1):
                         for w in range(1, dur_date + 1):
-                            for k in range(1, dur_hour + 1):
+                            for k in range(1, (dur_hour // 2) + 1):
                                 if w != d or k != h:
                                     clauses.append([f"-{var(d,h,i,j)}", f"-{var(w,k,i,j)}"])
 
@@ -83,15 +83,15 @@ if __name__ == '__main__':
         for i in range(1, N + 1):
             for j in range(1, N + 1):
                 if i != j:
-                    for h in range(1, dur_hour + 1):
+                    for h in range(1, (dur_hour + 1) // 2):
                         for w in range(1, N + 1):
                             if w != i and w != j:
-                                for k in range(1, dur_hour + 1):
+                                for k in range(1, (dur_hour + 1) // 2):
                                     clauses.append([f"{-var(d,h,i,j)}", f"{-var(d,k,i,w)}"])
 
     # Dos juegos no pueden ocurrir al mismo tiempo
     for d in range(1, dur_date + 1):
-        for h in range(1, dur_hour + 1):
+        for h in range(1, (dur_hour // 2) + 1):
             for i in range(1, N + 1):
                 for j in range(1, N + 1):
                     if i != j:
@@ -105,11 +105,13 @@ if __name__ == '__main__':
         for i in range(1, N + 1):
             for j in range(1, N + 1):
                 if i != j:
-                    for h in range(1, dur_hour + 1):
+                    for h in range(1, (dur_hour // 2) + 1):
                         for w in range(1, N + 1):
                             if w != i and w != j:
-                                for k in range(1, dur_hour + 1):
+                                for k in range(1, (dur_hour // 2) + 1):
                                     clauses.append([f"{-var(d,h,i,j)}", f"{-var(d+1,k,i,w)}"])
+                                    clauses.append([f"{-var(d,h,i,j)}", f"{-var(d+1,k,w,j)}"])
+
 
     print("Saving value dictionary in obj/keys.pkl")
     save_obj(value_dict, "keys")
