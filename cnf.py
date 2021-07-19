@@ -34,7 +34,7 @@ def convert(filename):
     
     init_date = datetime.date.fromisoformat(data["start_date"])
     end_date = datetime.date.fromisoformat(data["end_date"])
-    dur_date = (end_date - init_date).days
+    dur_date = (end_date - init_date).days + 1
 
     init_hour = datetime.time.fromisoformat(data["start_time"])
     end_hour = datetime.time.fromisoformat(data["end_time"])
@@ -79,11 +79,15 @@ def convert(filename):
         for i in range(1, N + 1):
             for j in range(1, N + 1):
                 if i != j:
-                    for h in range(1, (dur_hour + 1) // 2):
+                    for h in range(1, (dur_hour // 2) + 1):
                         for w in range(1, N + 1):
-                            if w != i and w != j:
-                                for k in range(1, (dur_hour + 1) // 2):
-                                    clauses.append([f"{-var(d,h,i,j)}", f"{-var(d,k,i,w)}"])
+                            if w != i:
+                                for k in range(1, (dur_hour // 2) + 1):
+                                    if w != j:
+                                        clauses.append([f"{-var(d,h,i,j)}", f"{-var(d,k,i,w)}"])
+                                        clauses.append([f"{-var(d,h,i,j)}", f"{-var(d,k,w,j)}"])
+                                    
+                                    clauses.append([f"{-var(d,h,i,j)}", f"{-var(d,k,w,i)}"])
 
     # Dos juegos no pueden ocurrir al mismo tiempo
     for d in range(1, dur_date + 1):
