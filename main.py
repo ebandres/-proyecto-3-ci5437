@@ -19,9 +19,15 @@ if __name__ == '__main__':
     thread.start()
     thread.join()
 
+    cnf_t = time.perf_counter()
+    print(f"JSON to CNF Time: {cnf_t - start_t}")
+
     # Glucose stuff
     proc = subprocess.Popen(["./glucose/simp/glucose_static", "cnf.txt", "r.txt"])
     proc.wait()
+
+    glucose_t = time.perf_counter()
+    print(f"Glucose Time: {glucose_t - cnf_t}")
 
     value_dict = saveload.load_obj('keys')
 
@@ -69,4 +75,5 @@ if __name__ == '__main__':
     print("Done")
 
     end_t = time.perf_counter()
+    print(f"Creating Calendar Time: {end_t - glucose_t}")
     print(f"Execution time: {end_t - start_t}")
