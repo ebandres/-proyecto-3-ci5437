@@ -1,0 +1,8 @@
+{
+  "tournament_name": "Torneo3",
+  "start_date": "2021-09-06",
+  "end_date": "2021-09-16",
+  "start_time": "10:00:00",
+  "end_time": "21:00:00",
+  "participants": ["Bosch", "Mickey", "Maddie", "Earl", "Harvey"]
+} 

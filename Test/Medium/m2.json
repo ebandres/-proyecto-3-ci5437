@@ -1,0 +1,8 @@
+{
+  "tournament_name": "Torneo_M2",
+  "start_date": "2021-02-17",
+  "end_date": "2021-03-10",
+  "start_time": "10:00:00",
+  "end_time": "20:00:00",
+  "participants": ["Daniel", "Julián Carax", "Fermín", "Francisco", "Nuria", "Tomás", "Beatriz", "Clara", "Isaac"]
+}  
