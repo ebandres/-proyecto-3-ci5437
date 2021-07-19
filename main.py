@@ -62,6 +62,6 @@ if __name__ == '__main__':
         cal.events.add(e)
 
     print("Writing calendar file...")
-    with open("test.ics", 'w') as ic:
+    with open(f"{tournament_name}.ics", 'w') as ic:
         ic.write(str(cal))
     print("Done")
