@@ -1,4 +1,4 @@
-import sys, json, datetime, os, subprocess, threading
+import sys, json, datetime, os, subprocess, threading, time
 import cnf
 import saveload
 from ics import Calendar, Event
@@ -12,6 +12,8 @@ if __name__ == '__main__':
     if len(sys.argv) < 2:
         print("Missing Argument")
         exit(1)
+
+    start_t = time.perf_counter()
 
     thread = threading.Thread(target=cnf.convert(sys.argv[1]))
     thread.start()
@@ -65,3 +67,6 @@ if __name__ == '__main__':
     with open(f"{tournament_name}.ics", 'w') as ic:
         ic.write(str(cal))
     print("Done")
+
+    end_t = time.perf_counter()
+    print(f"Execution time: {end_t - start_t}")
