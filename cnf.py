@@ -24,8 +24,8 @@ def convert(filename):
 
     file_name = filename
 
-    f = open(file_name, 'r')
-    data = json.loads(f.read())
+    with open(file_name, 'r') as f:
+        data = json.loads(f.read())
 
     N = len(data["participants"])
 
@@ -113,16 +113,15 @@ def convert(filename):
     saveload.save_obj(value_dict, "keys")
 
     print("Writing cnf.txt ...")
-    cnf = open("cnf.txt", "w")
-    separator = " "
+    with open("cnf.txt", "w") as cnf:
+        separator = " "
+    
+        cnf.write(f"p cnf {count} {len(clauses)} \n")
+    
+        for cls in clauses:
+            cls.append("0")
+            cnf.write(separator.join(cls) + "\n")
 
-    cnf.write(f"p cnf {count} {len(clauses)} \n")
-
-    for cls in clauses:
-        cls.append("0")
-        cnf.write(separator.join(cls) + "\n")
-
-    cnf.close()
     print("Done")
 
 

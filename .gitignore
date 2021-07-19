@@ -2,3 +2,5 @@
 cnf.txt
 *.pkl
 r.txt
+*.pyc
+*.ics
