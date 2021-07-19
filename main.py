@@ -1,4 +1,4 @@
-import sys, json, datetime
+import sys, json, datetime, os, subprocess, threading
 import cnf
 import saveload
 from ics import Calendar, Event
@@ -13,9 +13,13 @@ if __name__ == '__main__':
         print("Missing Argument")
         exit(1)
 
-    cnf.convert(sys.argv[1])
+    thread = threading.Thread(target=cnf.convert(sys.argv[1]))
+    thread.start()
+    thread.join()
 
     # Glucose stuff
+    proc = subprocess.Popen(["./glucose/simp/glucose_static", "cnf.txt", "r.txt"])
+    proc.wait()
 
     value_dict = saveload.load_obj('keys')
 
