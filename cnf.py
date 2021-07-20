@@ -71,6 +71,8 @@ def convert(filename):
         for cls in clauses:
             cls.append("0")
             cnf.write(separator.join(cls) + "\n")
+
+    clauses = []
     
     # Los participantes máximo deben jugar una vez como local y una como visitante con otro participante
     for d in range(1, dur_date + 1):
@@ -89,6 +91,8 @@ def convert(filename):
         for cls in clauses:
             cls.append("0")
             cnf.write(separator.join(cls) + "\n")
+
+    clauses = []
 
     # Un participante puede jugar a lo sumo una vez por dia
     for d in range(1, dur_date + 1):
@@ -112,6 +116,8 @@ def convert(filename):
             cls.append("0")
             cnf.write(separator.join(cls) + "\n")
 
+    clauses = []
+
     # Dos juegos no pueden ocurrir al mismo tiempo
     for d in range(1, dur_date + 1):
         for h in range(1, (dur_hour // 2) + 1):
@@ -129,6 +135,8 @@ def convert(filename):
         for cls in clauses:
             cls.append("0")
             cnf.write(separator.join(cls) + "\n")
+
+    clauses = []
 
     # Un jugador no puede jugar ni de local ni de visitante dos dias consecutivos
     for d in range(1, dur_date):
@@ -149,6 +157,7 @@ def convert(filename):
             cls.append("0")
             cnf.write(separator.join(cls) + "\n")
 
+    clauses = []
 
     print("Saving value dictionary in keys.pkl")
     saveload.save_obj(value_dict, "keys")
