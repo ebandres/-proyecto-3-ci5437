@@ -42,6 +42,7 @@ def convert(filename):
 
     temp = []
     count = 0
+    clauses_sum = 0
 
     print("Calculating clauses...")
 
@@ -66,12 +67,11 @@ def convert(filename):
     with open("cnf.txt", "w") as cnf:
         separator = " "
 
-        cnf.write(f"p cnf {count} {len(clauses)} \n")
-
         for cls in clauses:
             cls.append("0")
             cnf.write(separator.join(cls) + "\n")
 
+    clauses_sum += len(clauses)
     clauses = []
     
     # Los participantes máximo deben jugar una vez como local y una como visitante con otro participante
@@ -92,6 +92,7 @@ def convert(filename):
             cls.append("0")
             cnf.write(separator.join(cls) + "\n")
 
+    clauses_sum += len(clauses)
     clauses = []
 
     # Un participante puede jugar a lo sumo una vez por dia
@@ -116,6 +117,7 @@ def convert(filename):
             cls.append("0")
             cnf.write(separator.join(cls) + "\n")
 
+    clauses_sum += len(clauses)
     clauses = []
 
     # Dos juegos no pueden ocurrir al mismo tiempo
@@ -136,6 +138,7 @@ def convert(filename):
             cls.append("0")
             cnf.write(separator.join(cls) + "\n")
 
+    clauses_sum += len(clauses)
     clauses = []
 
     # Un jugador no puede jugar ni de local ni de visitante dos dias consecutivos
@@ -157,7 +160,16 @@ def convert(filename):
             cls.append("0")
             cnf.write(separator.join(cls) + "\n")
 
+    clauses_sum += len(clauses)
     clauses = []
+
+    with open("cnf.txt", 'r+') as cnf:
+        readcont = cnf.read()
+        cnf.seek(0,0)
+
+        cnf.write(f"p cnf {count} {clauses_sum} \n")
+
+        cnf.write(readcont)
 
     print("Saving value dictionary in keys.pkl")
     saveload.save_obj(value_dict, "keys")

@@ -1,0 +1,10 @@
+{
+    "tournament_name": "Torneo_H3",
+    "start_date": "1263-01-10",
+    "end_date": "1263-02-22",
+    "start_time": "10:00:00",
+    "end_time": "23:00:00",
+    "participants": ["Geralt", "Yennefer", "Ciri", "Calanthe", "Triss", "Jaskier", "Philippa", "Dijkstra", "Vilgefortz", "Eredin",
+                     "Regis", "Foltest", "Vesemir", "Tissaia", "Eskel", "Lambert"]
+}  
+  
