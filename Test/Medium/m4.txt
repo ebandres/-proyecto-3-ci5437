@@ -1,22 +1,20 @@
-Results:
-
-e1.json:
 Calculating clauses...
 Saving value dictionary in keys.pkl
 Writing cnf.txt ...
 Done
-JSON to CNF Time: 0.13045512300004702
+JSON to CNF Time: 19.85427066200009
 c
 c This is glucose 4.0 --  based on MiniSAT (Many thanks to MiniSAT team)
 c
 c ========================================[ Problem Statistics ]===========================================
 c |                                                                                                       |
-c |  Number of variables:           288                                                                   |
-c |  Number of clauses:           18876                                                                   |
-c |  Parse time:                   0.00 s                                                                 |
+c |  Number of variables:         12096                                                                   |
+c |  Number of clauses:         6298056                                                                   |
+c |  Parse time:                   1.02 s                                                                 |
 c |                                                                                                       |
 c | Preprocesing is fully done
-c |  Simplification time:          0.01 s                                                                 |
+c Too many clauses... No preprocessing
+c |  Simplification time:          0.30 s                                                                 |
 c |                                                                                                       |
 c ========================================[ MAGIC CONSTANTS ]==============================================
 c | Constants are supposed to work well together :-)                                                      |
@@ -36,26 +34,26 @@ c |                                                                             
 c |          RESTARTS           |          ORIGINAL         |              LEARNT              | Progress |
 c |       NB   Blocked  Avg Cfc |    Vars  Clauses Literals |   Red   Learnts    LBD2  Removed |          |
 c =========================================================================================================
-c last restart ## conflicts  :  0 111 
+c last restart ## conflicts  :  469 2244 
 c =========================================================================================================
-c restarts              : 1 (0 conflicts in avg)
+c restarts              : 10 (327 conflicts in avg)
 c blocked restarts      : 0 (multiple: 0) 
 c last block at restart : 0
-c nb ReduceDB           : 0
-c nb removed Clauses    : 0
+c nb ReduceDB           : 1
+c nb removed Clauses    : 990
 c nb learnts DL2        : 0
 c nb learnts size 2     : 0
 c nb learnts size 1     : 0
-c conflicts             : 0              (0 /sec)
-c decisions             : 112            (0.00 % random) (10173 /sec)
-c propagations          : 288            (26158 /sec)
+c conflicts             : 3273           (2248 /sec)
+c decisions             : 54982          (0.00 % random) (37762 /sec)
+c propagations          : 290891         (199784 /sec)
 c nb reduced Clauses    : 0
-c CPU time              : 0.01101 s
+c CPU time              : 1.45603 s
 
 s SATISFIABLE
 SAT
-Glucose Time: 0.014326234000009208
+Glucose Time: 1.8113062630000059
 Writing calendar file...
 Done
-Creating Calendar Time: 0.008216258999937054
-Execution time: 0.15299761599999329
+Creating Calendar Time: 0.039800988999559195
+Execution time: 21.705377913999655

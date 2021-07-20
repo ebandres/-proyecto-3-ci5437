@@ -1,0 +1,58 @@
+Calculating clauses...
+Saving value dictionary in keys.pkl
+Writing cnf.txt ...
+Done
+JSON to CNF Time: 0.5209334229998603
+c
+c This is glucose 4.0 --  based on MiniSAT (Many thanks to MiniSAT team)
+c
+c ========================================[ Problem Statistics ]===========================================
+c |                                                                                                       |
+c |  Number of variables:          1100                                                                   |
+c |  Number of clauses:          165320                                                                   |
+c |  Parse time:                   0.03 s                                                                 |
+c |                                                                                                       |
+c | Preprocesing is fully done
+c |  Simplification time:          0.15 s                                                                 |
+c |                                                                                                       |
+c ========================================[ MAGIC CONSTANTS ]==============================================
+c | Constants are supposed to work well together :-)                                                      |
+c | however, if you find better choices, please let us known...                                           |
+c |-------------------------------------------------------------------------------------------------------|
+c | Adapt dynamically the solver after 100000 conflicts (restarts, reduction strategies...)               |
+c |-------------------------------------------------------------------------------------------------------|
+c |                                |                                |                                     |
+c | - Restarts:                    | - Reduce Clause DB:            | - Minimize Asserting:               |
+c |   * LBD Queue    :     50      |   * First     :   2000         |    * size <  30                     |
+c |   * Trail  Queue :   5000      |   * Inc       :    300         |    * lbd  <   6                     |
+c |   * K            :   0.80      |   * Special   :   1000         |                                     |
+c |   * R            :   1.40      |   * Protected :  (lbd)< 30     |                                     |
+c |                                |                                |                                     |
+c ==================================[ Search Statistics (every  10000 conflicts) ]=========================
+c |                                                                                                       |
+c |          RESTARTS           |          ORIGINAL         |              LEARNT              | Progress |
+c |       NB   Blocked  Avg Cfc |    Vars  Clauses Literals |   Red   Learnts    LBD2  Removed |          |
+c =========================================================================================================
+c last restart ## conflicts  :  105 247 
+c =========================================================================================================
+c restarts              : 3 (116 conflicts in avg)
+c blocked restarts      : 0 (multiple: 0) 
+c last block at restart : 0
+c nb ReduceDB           : 0
+c nb removed Clauses    : 0
+c nb learnts DL2        : 0
+c nb learnts size 2     : 0
+c nb learnts size 1     : 0
+c conflicts             : 349            (1986 /sec)
+c decisions             : 2386           (0.00 % random) (13578 /sec)
+c propagations          : 9067           (51597 /sec)
+c nb reduced Clauses    : 0
+c CPU time              : 0.175728 s
+
+s SATISFIABLE
+SAT
+Glucose Time: 0.18654846400022507
+Writing calendar file...
+Done
+Creating Calendar Time: 0.010941680000087217
+Execution time: 0.7184235670001726
