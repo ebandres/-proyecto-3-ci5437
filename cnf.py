@@ -62,6 +62,15 @@ def convert(filename):
 
                 clauses.append(temp)
                 temp = []
+
+    with open("cnf.txt", "w") as cnf:
+        separator = " "
+
+        cnf.write(f"p cnf {count} {len(clauses)} \n")
+
+        for cls in clauses:
+            cls.append("0")
+            cnf.write(separator.join(cls) + "\n")
     
     # Los participantes máximo deben jugar una vez como local y una como visitante con otro participante
     for d in range(1, dur_date + 1):
@@ -73,6 +82,13 @@ def convert(filename):
                             for k in range(1, (dur_hour // 2) + 1):
                                 if w != d or k != h:
                                     clauses.append([f"-{var(d,h,i,j)}", f"-{var(w,k,i,j)}"])
+
+    with open("cnf.txt", "a") as cnf:
+        separator = " "
+
+        for cls in clauses:
+            cls.append("0")
+            cnf.write(separator.join(cls) + "\n")
 
     # Un participante puede jugar a lo sumo una vez por dia
     for d in range(1, dur_date + 1):
@@ -89,6 +105,13 @@ def convert(filename):
                                     
                                     clauses.append([f"{-var(d,h,i,j)}", f"{-var(d,k,w,i)}"])
 
+    with open("cnf.txt", "a") as cnf:
+        separator = " "
+
+        for cls in clauses:
+            cls.append("0")
+            cnf.write(separator.join(cls) + "\n")
+
     # Dos juegos no pueden ocurrir al mismo tiempo
     for d in range(1, dur_date + 1):
         for h in range(1, (dur_hour // 2) + 1):
@@ -99,6 +122,13 @@ def convert(filename):
                             for k in range(1, N + 1):
                                 if (w != i or k != j) and w != k:
                                     clauses.append([f"{-var(d,h,i,j)}", f"{-var(d,h,w,k)}"])
+
+    with open("cnf.txt", "a") as cnf:
+        separator = " "
+
+        for cls in clauses:
+            cls.append("0")
+            cnf.write(separator.join(cls) + "\n")
 
     # Un jugador no puede jugar ni de local ni de visitante dos dias consecutivos
     for d in range(1, dur_date):
@@ -112,19 +142,17 @@ def convert(filename):
                                     clauses.append([f"{-var(d,h,i,j)}", f"{-var(d+1,k,i,w)}"])
                                     clauses.append([f"{-var(d,h,i,j)}", f"{-var(d+1,k,w,j)}"])
 
+    with open("cnf.txt", "a") as cnf:
+        separator = " "
+
+        for cls in clauses:
+            cls.append("0")
+            cnf.write(separator.join(cls) + "\n")
+
 
     print("Saving value dictionary in keys.pkl")
     saveload.save_obj(value_dict, "keys")
 
-    print("Writing cnf.txt ...")
-    with open("cnf.txt", "w") as cnf:
-        separator = " "
-    
-        cnf.write(f"p cnf {count} {len(clauses)} \n")
-    
-        for cls in clauses:
-            cls.append("0")
-            cnf.write(separator.join(cls) + "\n")
 
     print("Done")
 
